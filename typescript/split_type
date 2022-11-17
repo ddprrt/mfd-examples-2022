@@ -1,0 +1,26 @@
+type VideoFormatURLs = {
+    format360p: URL,
+    format480p: URL,
+    format720p: URL,
+    format1080p: URL
+}
+
+type AvailableFormats = {
+    [K in keyof VideoFormatURLs]: {
+        [P in K]: URL
+    }
+}[keyof VideoFormatURLs]
+
+type Split<T> =  {
+    [K in keyof T]: {
+        [P in K]: T[P]
+    }
+}[keyof T]
+
+function load_at_least_one(url: Split<VideoFormatURLs>) {
+
+}
+load_at_least_one({ format360p: new URL("..."), format480p: new URL("...") })
+
+export {}
+
